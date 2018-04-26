@@ -28,7 +28,7 @@ select(tb, child:elderly)
 storms$wind
 storms[,2] # will gives results horizontally
 #
-#Get the names withou a certain column
+#Get the names without a certain column
 names(cases)[-1]
 names(cases)[c(1,3)]
 # Unlist simplifies df to produce a vectors that contains all atomic components which occur in x
