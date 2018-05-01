@@ -28,7 +28,7 @@ select(tb, child:elderly)
 storms$wind
 storms[,2] # will gives results horizontally
 #
-#Get the names without a certain column
+#Get the names withou a certain column
 names(cases)[-1]
 names(cases)[c(1,3)]
 # Unlist simplifies df to produce a vectors that contains all atomic components which occur in x
@@ -78,6 +78,49 @@ library(dplyr)
 ?summarize # Used on grouped data created by group_by(). The output will have one row for each group
 ?group_by # takes an existing tbl and converts it into a grouped tbl where operations are performed "by group".
 ?ungroup # removes grouping
+#
+#Install package "nycflights13" for flights that departed from NYC in 2013
+install.packages("nycflights13")
+library(nycflights13)
+#
+#
+# Ways to access information: 
+select() # Extracts existing variables
+filter() # Extracts existing observations
+mutate() # Derive new variables from existing variables
+summarise() # Change the unit of analysis. Note summarise with an s not a z
 
+# select()
+select(storms,storm,pressure) # selects from the dataset storms the two columns storm and pressure
+select(storms, pressure, storm) # selects from the dataset storms the two columns but puts pressure before storm 
+select(storms, -storm) # selects from the dataset storms all the columns except the column storm
+?select # you can add to it start_with("pet") or end_with("abc") 
+select(storms, wind:date) # selects all columns from wind to date
+# Useful select functions 
+select(storms, matches("pressure")) # selects columns whoe name matches a regular expression
+#
+#
+# filter()
+filter(storms, wind >= 50)
+# Another way to do the above command
+storms %>%
+  filter(wind >= 50)
+#
+filter(storms, wind >= 50, storm %in% c("Alberto","Alex","Allison"))   # Alex won't show because wind is not >= 50 for Alex
+#
+#
+# Logical Tests in R
+# <, >, ==, <=, >=, !=, %in% (Group membership), is.na (is NA),  !is.na (is not NA), 
+# & (boolean and), | (boolean or), xor (exactly or), ! (not), any (any true), all (all true)
+#
+#
+# mutate() 
+mutate(storms, ratio = pressure / wind)
+# Another way to do the above
+storms %>%
+  mutate(ratio = pressure / wind)
+#
+#
+# Useful Mutate functions
 
 
